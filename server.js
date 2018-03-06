@@ -6,9 +6,9 @@ var app = express();
 var path = require("path");
 var PORT = process.env.port || 3000;
 
-app.use(express.static("public"));
+app.use(express.static(process.cwd() + '/public'));
 // css won't show without this
-app.use(express.static(path.join(__dirname, './public/assets/css/burger_style.css')));
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

@@ -1,35 +1,38 @@
-     {{!-- * Setup the `index.handlebars` to have the template that Handlebars can render onto.
+ {{!-- * Setup the `index.handlebars` to have the template that Handlebars can render onto. * Create a button in `index.handlebars`
+that will submit the user input into the database. --}}
 
-     * Create a button in `index.handlebars` that will submit the user input into the database. --}}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Create and devour as many specialty burgers as you can eat at Burger-Aholics</h1>
+      <img src="/assets/css/img/burger.jpg">
+    </div>
+    <div class="col-sm-6">
+      <h2>Burgers You've Devoured</h2>
+      <ul>
+        {{#each burgers}} {{!-- #unless checks for falsey value --}} {{#unless devoured}} {{> burgers/burger-block devoured=true}}
+        <button class="btn change-devour" type="submit">DEVOUR</button>
+        {{/unless}} {{/each}}
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <h2>Burgers to Devour</h2>
 
-<h1>Create and devour as many specialty burgers as you can eat at Burger-Aholics</h1>
+      <ul>
+        {{#each burgers}}
+        {{#if devoured}} 
+        {{> burgers/burger-block devoured=false}}
+         <button class="btn change-devour" type="submit">DEVOUR</button>
+         {{/if}}
+         {{/each}}
+      </ul>
 
-<h2>Burgers You've Devoured</h2>
-
-<ul>
-  {{#each burgers}}
-  {{!-- #unless checks for falsey value --}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers to Devour</h2>
-
-<ul>
-  {{#each burgers}}
-  {{!-- #if checks an if condition for boolean or if something exists --}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<li>
-	{{name}}
-</li>
-
+      <li>
+        {{burger_name}}
+      </li>
+    </div>
+  </div>
+</div>
 <h2>Make Your Own Burger:</h2>
 <form class="create-form">
 
@@ -38,9 +41,5 @@
     <input type="text" id="ca" name="name">
   </div>
 
-  <div class="form-group">
-    <input type="input" value="0"> 
-  </div>
-
-  <button type="submit">Add to List</button>
+  <button class="submit" type="submit">Add to List</button>
 </form>

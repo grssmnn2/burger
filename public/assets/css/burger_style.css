@@ -1,3 +1,13 @@
+body{
+    background-color: rgb(204, 204, 130);
+    text-align: center;
+}
+
 h1, h2{
     font-family: 'Bowlby One SC', cursive;
+}
+
+ul, .submit, label, input{
+    font-size: 24px;
+    font-family: 'News Cycle', sans-serif;
 }
