@@ -1,6 +1,7 @@
 body{
     background-color: rgb(204, 204, 130);
     text-align: center;
+    padding-bottom: 5%;
 }
 
 h1, h2{
@@ -10,4 +11,10 @@ h1, h2{
 ul, .submit, label, input{
     font-size: 24px;
     font-family: 'News Cycle', sans-serif;
+}
+
+img{
+    width: 85%;
+    height: 85%;
+    border-radius: 100%;
 }

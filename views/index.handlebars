@@ -5,17 +5,21 @@ that will submit the user input into the database. --}}
   <div class="row">
     <div class="col-sm-12">
       <h1>Create and devour as many specialty burgers as you can eat at Burger-Aholics</h1>
-      <img src="/assets/css/img/burger.jpg">
+    
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h2>Burgers You've Devoured</h2>
       <ul>
-        {{#each burgers}} {{!-- #unless checks for falsey value --}} {{#unless devoured}} {{> burgers/burger-block devoured=true}}
-        <button class="btn change-devour" type="submit">DEVOUR</button>
+        {{#each burgers}}
+        {{#unless devoured}} 
+        {{> burgers/burger-block devoured=true}}
         {{/unless}} {{/each}}
       </ul>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
+        <img src="/assets/img/tasty.jpg" alt="hamburger">
+    </div>
+    <div class="col-sm-4">
       <h2>Burgers to Devour</h2>
 
       <ul>
