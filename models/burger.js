@@ -1,7 +1,5 @@
 // require orm
 var orm = require("../config/orm.js");
-// create code that will call orm functions using burger specific input
-// export this after writing function calls
 
 // * Also inside `burger.js`, create the code that will call the ORM functions using burger specific input
 //  for the ORM.
@@ -9,19 +7,19 @@ var orm = require("../config/orm.js");
 // * Export at the end of the `burger.js` file.
 
 var burger = {
-    selectAll: function(cb) {
-      orm.selectAll("burgers", function(res) {
+    selectAll: function(table, cb) {
+      orm.selectAll(table, function(res) {
         cb(res);
       });
     },
     // The variables cols and vals are arrays.
-    insertOne: function(cols, vals, cb) {
-      orm.insertOne("burgers", cols, vals, function(res) {
+    insertOne: function(table, cols, vals, cb) {
+      orm.insertOne(table, cols, vals, function(res) {
         cb(res);
       });
     },
-    updateOne: function(objColVals, condition, cb) {
-      orm.updateOne("burgers", objColVals, condition, function(res) {
+    updateOne: function(table, objColVals, condition, cb) {
+      orm.updateOne(table, objColVals, condition, function(res) {
         cb(res);
       });
     }

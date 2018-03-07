@@ -12,9 +12,13 @@ that will submit the user input into the database. --}}
       <ul>
         {{#each burgers}}
         {{#unless devoured}} 
-        {{> burgers/burger-block devoured=true}}
+        {{burger_name}}
         {{/unless}} {{/each}}
       </ul>
+
+        <li>          
+        {{burger_name}}      
+       </li>
     </div>
     <div class="col-sm-4">
         <img src="/assets/img/tasty.jpg" alt="hamburger">
@@ -25,7 +29,7 @@ that will submit the user input into the database. --}}
       <ul>
         {{#each burgers}}
         {{#if devoured}} 
-        {{> burgers/burger-block devoured=false}}
+        <p>{{burger_name}}</p>
          <button class="btn change-devour" type="submit">DEVOUR</button>
          {{/if}}
          {{/each}}
@@ -45,5 +49,5 @@ that will submit the user input into the database. --}}
     <input type="text" id="ca" name="name">
   </div>
 
-  <button class="submit" type="submit">Add to List</button>
+  <button class="create-form submit" type="submit">Add to List</button>
 </form>
