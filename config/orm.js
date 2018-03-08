@@ -15,7 +15,7 @@ var connection = require ("./connection.js");
     insertOne: function(burger_name, cb) {   
       var queryString = "INSERT INTO burgers SET ?";  
       connection.query(queryString, 
-        {burger_name: req.body.burger_name, devoured: false},
+        {burger_name: burger_name, devoured: false},
         function(err, result) {
         if (err) {
           throw err;
@@ -24,15 +24,17 @@ var connection = require ("./connection.js");
       });
     },
     // update one specific burger
-    updateOne: function(cb){
-      // change burger devoured to true    
-      connection.query('UPDATE burgers SET ? WHERE ?', [{devoured: true}, {id: id}], function (err, result) {
+    updateOne: function(id, cb){
+      // change burger devoured to true     
+      connection.query('UPDATE burgers SET ? WHERE ?', 
+      [{devoured: true}, {id: id}], function (err, result) {
         if (err) {
           throw err;
         }  
         cb(result);
       });
     }
+  
   };
   
   // Export the orm object for the model

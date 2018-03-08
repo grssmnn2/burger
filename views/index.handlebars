@@ -1,79 +1,92 @@
- {{!-- * Setup the `index.handlebars` to have the template that Handlebars can render onto. 
- * Create a button in `index.handlebars`
-that will submit the user input into the database. --}}
-
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
       <h1>Create and devour as many specialty burgers as you can eat at Burger-Aholics</h1>
-    
+
     </div>
     <div class="col-sm-4">
       <h2>Burgers to Devour</h2>
       <ul>
-        {{!-- unless renders a falsy value --}}
-        {{#each burgers}}
-        {{#unless devoured}} 
-        <p>{{burger_name}}</p>
-           <button class="btn change-devour" type="submit">DEVOUR</button>
+        {{#each burger_data}} 
+        {{#unless devoured}}
+        <p> {{this.burger_name}}</p>
+        <button class="btn change-devour" type="submit" id={{this.id}} >DEVOUR</button>
         {{/unless}} 
         {{/each}}
       </ul>
 
-     
+
     </div>
     <div class="col-sm-4">
-        <img src="/assets/img/tasty.jpg" alt="hamburger">
+      <img src="/assets/img/tasty.jpg" alt="hamburger">
     </div>
     <div class="col-sm-4">
 
       <h2>Burgers You've Devoured</h2>
 
       <ul>
-        {{!-- if renders a true value --}}
-        {{#each burgers}}
-        {{#if devoured}} 
-        <p>{{burger_name}}</p>        
-         {{/if}}
-         {{/each}}
+        {{#each burger_data}} 
+        {{#if devoured}}
+        <p>{{id}} {{burger_name}}</p>
+        {{/if}} 
+        {{/each}}
       </ul>
     </div>
   </div>
 </div>
 
-  <h2>Make Your Own Burger:</h2>
+<h2>Make Your Own Burger:</h2>
 
-    <form class="create-form">
-        <div class="form-group">
-            <label for="ca">Burger Name:</label>
-            <input type="text" id="burgerName">
-        </div>
-        <button class="create-form submit" type="submit">Add to Menu</button>
-    </form>
+<form class="create-form">
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="burgerName">
+  </div>
+  <button class="create-form submit" type="submit">Add to Menu</button>
+</form>
 
-     <script>
-        $(".create-form").on("submit", function (event) {
-            // Make sure to preventDefault on a submit event.
-            event.preventDefault();
+{{!-- click functions stay here --}}
+   <script src="https://code.jquery.com/jquery.js"></script>   
+<script>
+   $(".create-form").on("submit", function (event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-            var newBurger = {
-                burger: $("#burgerName").val().trim()
-            };
+    var newBurger = {
+      burger_name: $("#burgerName").val().trim()
+    };
+    console.log(newBurger);
+    // Send the POST request.
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function () {
+        console.log("added burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+  $(".change-devour").click(function (event) {
+   
+    var updateEaten = {
+      devoured: true
+    };
 
-            var id = $(this).data("id");
+    var id = $(this).attr("id");
+    console.log(id);
 
-            // Send the POST request.
-            $.ajax("/api/burger/" + id, {
-                type: "POST",
-                data: newBurger
-            }).then(
-                function () {
-                    console.log("added burger");
-                    // Reload the page to get the updated list
-                    location.assign("/");
-                }
-            );
-        });
-    </script>
-
-
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: updateEaten
+    }).then(
+      function () {
+        console.log("you ate the burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+</script>
