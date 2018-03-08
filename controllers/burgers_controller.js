@@ -17,14 +17,14 @@ router.get("/", function(req, res){
 });
 
 // to create a new burger, use post route
-router.post("/api/burgers", function(req, res){
+router.post("/api/burger", function(req, res){
     burger.insertOne([req.body.burger_name], function(result) {
         res.json({id: result.id});
     });    
 });
 
-// update a burger to devoured
-router.put("/api/burgers/:id", function(req, res) {
+// update a burger status to devoured
+router.put("/api/burger/:id", function(req, res) {
     burger.updateOne(req.body.id,
       function(result) {
           res.render("index", {

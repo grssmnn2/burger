@@ -4,17 +4,16 @@ var connection = require ("./connection.js");
 
   var orm = {
     // show all burger table contents
-    selectAll: function(table, cb) {
-      var queryString = "SELECT * FROM " + table;
-      connection.query(queryString, table, function(err, result) {
+    selectAll: function(cb) {
+      var queryString = "SELECT * FROM  burgers";
+      connection.query(queryString, function(err, result) {
         if (err) throw err;
         cb(result);
       });
     },
     // insert a new burger
-    insertOne: function(burger_name, cb) {
-      var queryString = "INSERT INTO burgers SET ?";
-  
+    insertOne: function(burger_name, cb) {   
+      var queryString = "INSERT INTO burgers SET ?";  
       connection.query(queryString, 
         {burger_name: req.body.burger_name, devoured: false},
         function(err, result) {
@@ -26,8 +25,8 @@ var connection = require ("./connection.js");
     },
     // update one specific burger
     updateOne: function(cb){
-      // change burger devoured to true
-      connection.query('UPDATE burgers SET ? WHERE ?', [{devoured: true}, {id: burgerID}], function (err, result) {
+      // change burger devoured to true    
+      connection.query('UPDATE burgers SET ? WHERE ?', [{devoured: true}, {id: id}], function (err, result) {
         if (err) {
           throw err;
         }  
