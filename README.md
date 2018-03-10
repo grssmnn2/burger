@@ -1,6 +1,6 @@
 # Burger App
 
-![Title Page](public/assets/img/tasty.jpg)
+![Title Page](public/assets/img/main.PNG)
 
 Burger-aholics allows users to create a burger, add it to the menu, and "devour it" using on screen buttons.
 
