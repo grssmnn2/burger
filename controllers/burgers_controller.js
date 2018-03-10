@@ -17,7 +17,7 @@ router.get("/", function(req, res){
 // to create a new burger, use post route
 // this is saying what to do if you receive a post request
 router.post("/api/burgers", function(req, res){
-    // user insert function to add whatever user entered in input box
+    // use insert function to add whatever user entered in input box
     console.log(req.body);
     burger.insertOne([req.body.burger_name], function(result) {
      res.json({id:result.insertId})  

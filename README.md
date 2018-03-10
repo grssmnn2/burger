@@ -18,6 +18,10 @@ path
 ```
 use "npm install packageName --save" in terminal to run application on your localhost:3000 webpage
 
+### Thoughts, Comments, Concerns
+
+This application was my first experience using different js files to house different functions of the server and page functionality. I used express for routing, handlebars to create dynamic HTML, and mySQL to store and update data.
+
 ## Authors
 
 * **Cecily Grossmann** (https://github.com/grssmnn2)
