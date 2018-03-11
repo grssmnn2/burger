@@ -4,7 +4,7 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var app = express();
 var path = require("path");
-var PORT = process.env.port || 3000;
+var PORT = process.env.PORT || 3000;
 
 app.use(express.static(process.cwd() + '/public'));
 // css won't show without this
