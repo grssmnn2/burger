@@ -15,7 +15,7 @@ var connection = require ("./connection.js");
     insertOne: function(burger_name, cb) {   
       var queryString = "INSERT INTO burgers SET ?";  
       connection.query(queryString, 
-        {burger_name: burger_name, devoured: false},
+        [{burger_name: burger_name, devoured: false}],
         function(err, result) {
         if (err) {
           throw err;
